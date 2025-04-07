@@ -1,0 +1,70 @@
+{% extends 'hotelmanagement/design.html' %}
+{% block userblock %}
+{% load staticfiles %}
+<style>
+
+
+    .doublewithac{
+    position: absolute;
+    top:10px;
+    margin-left:50px;
+    padding:26px;
+    width:900px;
+    height: 400px;
+}
+
+.doublewithac table{
+    width:40em;
+    text-align:center;
+    border-collapse:collapse;
+    border-spacing:1px;
+    background:white;
+}
+
+.doublewithac table tr th{
+    color:white;
+}
+.doublewithac table tr th{
+background:rgb(1, 176, 135);
+padding:10px;
+}
+.doublewithac table tr td{
+background:rgb(109,163,148,0.5);
+padding:10px;
+}
+.doublewithac table tr:hover td{
+background:rgba(237, 236, 234);
+}
+
+</style>
+
+<div class="doublewithac">
+
+<table align="right" style="font-size:100%;   color:red">
+    <tr>
+<th>HOTEL NAME</th>
+<th>ADDRESS</th>
+<th>MOBILE NUMBER</th>
+<th>ROOM CATEGORY</th>
+<th>AC TYPE</th>
+<th>IMAGE</th>
+<th>BOOKING</th>
+<th>AMOUNT</th>
+    </tr>
+{% for d in object %}
+    <tr>
+        <td>{{d.hotelname}}</td>
+        <td>{{d.address}}</td>
+        <td>{{d.mobilenumber}}</td>
+        <td>{{d.roomcategory}}</td>
+        <td>{{d.actype}}</td>
+        <td><img src="{{d.uploadimage.url}}" style="width:200px; height:100px"></td>
+        <td><a href="{% url 'userrequest' d.id %}">BOOKING NOW</a></td>
+        <td>{{v.amount}}</td>
+    </tr>
+
+
+
+{% endfor %}
+</table></div>
+{% endblock %}

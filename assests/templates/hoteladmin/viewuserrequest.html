@@ -1,0 +1,67 @@
+{% extends 'hoteladmin/admindesign.html' %}
+{% block adminblock %}
+{% load staticfiles %}
+{% load static %}
+
+<style>
+    .viewrequest {
+        position: absolute;
+        top: 10px;
+        margin-left: 50px;
+        padding: 26px;
+         width: 900px; 
+        height: 400px;
+        overflow: auto;
+    }
+
+    .viewrequest table {
+        /* width: 60em; Remove fixed width */
+        text-align: center;
+        border-collapse: collapse;
+        border-spacing: 1px;
+        background: white;
+    }
+
+    .viewrequest table tr th {
+        color: white;
+    }
+
+    .viewrequest table tr th {
+        background: rgb(1, 176, 135);
+        padding: 10px;
+    }
+
+    .viewrequest table tr td {
+        background: rgb(109, 163, 148, 0.5);
+        padding: 10px;
+    }
+
+    .viewrequest table tr:hover td {
+        background: rgba(237, 236, 234);
+    }
+</style>
+
+<div class="viewrequest">
+    <table>
+        <tr>
+            <th>USER NAME</th>
+            <th>MOBILE NUMBER</th>
+            <th>HOTEL NAME</th>
+            <th>ADDRESS</th>
+            <th>REQUEST STATUS</th>
+            <th>REQUEST</th>
+        </tr>
+        {% for d in objects %}
+        <tr style="color:red">
+            <td>{{ d.userId.firstname }}</td>
+            <td>{{ d.userId.mobilenumber }}</td>
+            <td>{{ d.hotel.hotelname }}</td>
+            <td>{{ d.hotel.address }}</td>
+            <td>{{ d.requeststatus }}</td>
+            <td><a href="{% url 'accept' d.id %}">Accept</a>
+                <a href="{% url 'reject' d.id %}">Reject</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
